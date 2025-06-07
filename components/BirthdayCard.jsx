@@ -125,130 +125,167 @@ const BirthdayCard = () => {
         Ihr Browser unterstützt das Audio-Element nicht.
       </audio>
 
-      {/* ✅ Aufklappende Karte - Buch-Style */}
-      <div
-        className={`birthday-card-book ${isOpen ? "open" : "closed"}`}
-        style={{
-          width: imageLoaded ? `${imageDimensions.width}px` : "600px",
-          height: imageLoaded ? `${imageDimensions.height}px` : "450px",
-        }}
-      >
-        {/* ✅ Linke Seite (Vorderseite) */}
-        <div
-          className="card-page card-front"
-          onClick={handleCardClick}
-          style={{
-            backgroundImage: "url(/karte.jpg)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        ></div>
-
-        {/* ✅ Rechte Seite (Innenseite) */}
-        <div className="card-page card-inside">
-          {/* Animiertes Konfetti im Hintergrund */}
-          <div className="confetti-background">
-            <div className="confetti-piece confetti-1"></div>
-            <div className="confetti-piece confetti-2"></div>
-            <div className="confetti-piece confetti-3"></div>
-            <div className="confetti-piece confetti-4"></div>
-            <div className="confetti-piece confetti-5"></div>
-            <div className="confetti-piece confetti-6"></div>
-            <div className="confetti-piece confetti-7"></div>
-            <div className="confetti-piece confetti-8"></div>
-            <div className="confetti-piece confetti-9"></div>
-          </div>
-          {/* ✅ Linke Innenseite - Grußtext */}
-          <div className="card-left-inside">
-            <h2 className="greeting-title">🎈 Für Elisabeth 🎈</h2>
-            <div className="greeting-poem">
-              <div className="poem-stanza">
-                <p>
-                  <em>Elisabeth, an diesem Tag so schön,</em>
-                </p>
-                <p>
-                  <em>Soll alles um dich voller Freude steh'n.</em>
-                </p>
-                <p>
-                  <em>Die Sterne tanzen nur für dich allein,</em>
-                </p>
-                <p>
-                  <em>Dein Lächeln lässt die ganze Welt erstrahlen rein.</em>
-                </p>
-              </div>
-              <div className="poem-stanza">
-                <p>
-                  <em>Mit jedem Jahr wirst du noch wunderbarer,</em>
-                </p>
-                <p>
-                  <em>Dein Herz so warm, deine Seele so klarer.</em>
-                </p>
-                <p>
-                  <em>Möge Glück dich stets begleiten,</em>
-                </p>
-                <p>
-                  <em>Und Liebe alle deine Wege bereiten.</em>
-                </p>
-              </div>
-
-              <div className="birthday-wishes">
-                <p>
-                  🎉 Alles Liebe zum Geburtstag! 🎉
-                </p>
-                <p
-                  style={{
-                    fontSize: "0.9rem",
-                    marginTop: "1px",
-                    color: "#e91e63",
-                  }}
-                >
-                  <em>
-                    Feiere diesen besonderen Tag
-                    <br />
-                    und lass dich verwöhnen, wie du es verdienst! 💝
-                  </em>
-                </p>
+      {/* ✅ Geburtstagskarte - geschlossen oder geöffnet */}
+      <div className={`birthday-card-book ${isOpen ? "open" : "closed"}`}>
+        {/* ✅ Wenn geschlossen: Nur Vorderseite */}
+        {!isOpen && (
+          <div
+            className="card-page card-front"
+            onClick={handleCardClick}
+            style={{
+              width: imageLoaded ? `${imageDimensions.width}px` : "600px",
+              height: imageLoaded ? `${imageDimensions.height}px` : "450px",
+              backgroundImage: "url(/karte.jpg)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <div className="card-overlay">
+              <h2>🎉 Klicken zum Öffnen 🎉</h2>
+              <div className="card-preview">
+                <span>Happy Birthday!</span>
+                <div style={{ marginTop: "10px", fontSize: "1.5rem" }}>
+                  🎈🎂🎈
+                </div>
               </div>
             </div>
           </div>
-          {/* ✅ Rechte Innenseite - Interaktiver Bereich */}
-          <div className="card-right-inside">
-            <h1 className="birthday-title">🎂 Happy Birthday! 🎂</h1>
+        )}
 
-            {/* Ballons */}
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                gap: "15px",
-                margin: "10px 0",
-              }}
-            >
-              <BalloonSVG color="#ff6b6b" size={20} />
-              <BalloonSVG color="#4ecdc4" size={20} />
-              <BalloonSVG color="#feca57" size={20} />
-              <BalloonSVG color="#ff9ff3" size={20} />
-              <BalloonSVG color="#54a0ff" size={20} />
+        {/* ✅ Wenn geöffnet: Zwei Seiten nebeneinander */}
+        {isOpen && (
+          <div className="card-opened-container">
+            {/* Animiertes Konfetti im Hintergrund */}
+            <div className="confetti-background">
+              <div className="confetti-piece confetti-1"></div>
+              <div className="confetti-piece confetti-2"></div>
+              <div className="confetti-piece confetti-3"></div>
+              <div className="confetti-piece confetti-4"></div>
+              <div className="confetti-piece confetti-5"></div>
+              <div className="confetti-piece confetti-6"></div>
+              <div className="confetti-piece confetti-7"></div>
+              <div className="confetti-piece confetti-8"></div>
+              <div className="confetti-piece confetti-9"></div>
             </div>
 
-            {/* SVG Torte */}
-            <CakeSVG candlesLit={candlesLit} />
+            {/* ✅ Linke Seite - Gedicht */}
+            <div className="card-left-inside">
+              <h2 className="greeting-title">🎈 Für Elisabeth 🎈</h2>
+              <div className="greeting-poem">
+                <div className="poem-stanza">
+                  <p>
+                    <em>An diesem Tag, so hell und klar,</em>
+                  </p>
+                  <p>
+                    <em>steht alles still - wie wunderbar.</em>
+                  </p>
+                  <p>
+                    <em>Die Welt wird leiser, um zu sehen,</em>
+                  </p>
+                  <p>
+                    <em>wie schön die Stunden um dich wehen.</em>
+                  </p>
+                  <br></br>
+                  <p>
+                    <em>Dein Lächeln trägt ein sanftes Licht,</em>
+                  </p>
+                  <p>
+                    <em>das selbst durch dunkle Wolken bricht.</em>
+                  </p>
+                  <p>
+                    <em>In deinem Blick liegt Zuversicht,</em>
+                  </p>
+                  <p>
+                    <em>die selbst den grausten Tag durchbricht.</em>
+                  </p>
+                    <br></br>
+                  <p>
+                    <em>Mit jedem Jahr wächst deine Kraft,</em>
+                  </p>
+                  <p>
+                    <em>die still bewegt, die Gutes schafft.</em>
+                  </p>
+                  <p>
+                    <em>Dein Herz - ein Ort voll Harmonie,</em>
+                  </p>
+                  <p>
+                    <em>in dem die Liebe schlägt wie nie.</em>
+                  </p>
+                    <br></br>
+                  <p>
+                    <em>Möge Glück dich stets umarmen,</em>
+                  </p>
+                  <p>
+                    <em>und gute Wege dich umrahmen.</em>
+                  </p>
+                  <p>
+                    <em>Was auch kommt - du bleibst ein Stern,</em>
+                  </p>
+                  <p>
+                    <em>der strahlt: beständig, warm und fern.</em>
+                  </p>
+                </div>
 
-            <p className="birthday-message">
-              🌬️ Puste in dein Mikrofon, um die Kerzen auszublasen! 🌬️
-            </p>
-
-            {candlesLit.every((lit) => !lit) && (
-              <div className="wish-granted">
-                <h3>🌟 Dein Wunsch wird wahr! 🌟</h3>
-                <p style={{ margin: "10px 0 0 0", fontSize: "1rem" }}>
-                  🎈 Alles Gute zum Geburtstag! 🎈
-                </p>
+                <div className="birthday-wishes">
+                  <p>
+                    <strong>🎉 Alles Liebe zum Geburtstag! 🎉</strong>
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "1rem",
+                      marginTop: "15px",
+                      color: "#e91e63",
+                    }}
+                  >
+                    <em>
+                      Feiere diesen besonderen Tag
+                      <br />
+                      und lass dich verwöhnen, wie du es verdienst! 💝
+                    </em>
+                  </p>
+                </div>
               </div>
-            )}
+            </div>
+
+            {/* ✅ Rechte Seite - Torte und Interaktion */}
+            <div className="card-right-inside">
+              <h1 className="birthday-title">🎂 Happy Birthday! 🎂</h1>
+
+              {/* Ballons */}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: "15px",
+                  margin: "10px 0",
+                }}
+              >
+                <BalloonSVG color="#ff6b6b" size={20} />
+                <BalloonSVG color="#4ecdc4" size={20} />
+                <BalloonSVG color="#feca57" size={20} />
+                <BalloonSVG color="#ff9ff3" size={20} />
+                <BalloonSVG color="#54a0ff" size={20} />
+              </div>
+
+              {/* SVG Torte */}
+              <CakeSVG candlesLit={candlesLit} />
+
+              <p className="birthday-message">
+                🌬️ Puste in dein Mikrofon, um die Kerzen auszublasen! 🌬️
+              </p>
+
+              {candlesLit.every((lit) => !lit) && (
+                <div className="wish-granted">
+                  <h3>🌟 Dein Wunsch wird wahr! 🌟</h3>
+                  <p style={{ margin: "10px 0 0 0", fontSize: "1rem" }}>
+                    🎈 Alles Gute zum Geburtstag! 🎈
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

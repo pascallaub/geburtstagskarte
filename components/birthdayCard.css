@@ -19,11 +19,27 @@
   max-height: 90vh;
 }
 
-.birthday-card-book.open {
-  width: auto !important;
+/* ✅ Geöffnete Karte Container */
+.card-opened-container {
   display: flex;
   min-width: 1200px;
   max-width: 1400px;
+  height: auto;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
+  position: relative;
+  animation: slideIn 0.8s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* ✅ Kartenseiten */
@@ -39,7 +55,7 @@
   transition: all 0.8s ease-in-out;
 }
 
-/* ✅ Vorderseite */
+/* ✅ Vorderseite (nur wenn geschlossen) */
 .card-front {
   width: 100%;
   height: 100%;
@@ -47,44 +63,7 @@
   text-align: center;
   overflow: hidden;
   cursor: pointer;
-  transform-origin: right center;
-}
-
-.birthday-card-book.open .card-front {
-  transform: rotateY(-15deg);
-  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
-  min-width: 600px;
-}
-
-/* ✅ Innenseite */
-.card-inside {
-  width: 0;
-  height: 100%;
-  opacity: 0;
-  overflow: hidden;
-  background: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
-  display: flex;
-  flex-direction: row;
-  padding: 0;
-  position: relative;
-}
-
-.birthday-card-book.open .card-inside {
-  width: 100%;
-  opacity: 1;
-  animation: slideIn 0.8s ease-out;
-  min-width: 800px;
-}
-
-@keyframes slideIn {
-  from {
-    width: 0;
-    opacity: 0;
-  }
-  to {
-    width: 100%;
-    opacity: 1;
-  }
+  border-radius: 20px;
 }
 
 /* ✅ Linke und rechte Innenseite */
@@ -118,24 +97,8 @@
   color: #e91e63;
   font-size: 1.8rem;
   font-weight: bold;
-  margin-bottom: 3px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   text-align: center;
-}
-
-.greeting-text {
-  color: #555;
-  line-height: 1.6;
-  font-size: 1rem;
-}
-
-.greeting-text p {
-  margin: 10px 0;
-}
-
-.greeting-text em {
-  color: #e91e63;
-  font-style: italic;
 }
 
 /* ✅ Overlay für Vorderseite */
@@ -234,13 +197,13 @@
 /* ✅ Gedicht Styling */
 .greeting-poem {
   color: #555;
-  line-height: 1.4;
+  line-height: 1; /* ✅ Besserer Zeilenabstand */
   font-size: 1.1rem;
   text-align: left;
 }
 
 .poem-stanza {
-  margin: 15px 0;
+  margin: 18px 0; /* ✅ Etwas mehr Abstand zwischen Strophen */
   padding: 20px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 15px;
@@ -249,7 +212,7 @@
 }
 
 .poem-stanza p {
-  margin: 8px 0;
+  margin: 6px 0; /* ✅ Kompakterer Zeilenabstand für besseren Fluss */
   font-style: italic;
   color: #444;
   font-size: 1.15rem;
@@ -280,15 +243,9 @@
 
 /* ✅ iPad Air 11" Queransicht - Spezielle Optimierung */
 @media screen and (min-width: 1194px) and (max-width: 1366px) and (min-height: 750px) and (max-height: 900px) and (orientation: landscape) {
-  .birthday-card-book {
-    max-width: 98vw;
-    max-height: 85vh;
-  }
-  
-  .birthday-card-book.open {
+  .card-opened-container {
     min-width: 1100px;
     max-width: 1300px;
-    height: auto;
   }
   
   .card-left-inside,
@@ -308,21 +265,20 @@
   
   .greeting-title {
     font-size: 1.7rem;
-    margin-bottom: 25px;
+    margin-bottom: 2px;
   }
   
   .greeting-poem {
-    font-size: 1.05rem;
-    line-height: 1.5;
+    font-size: 1rem;
   }
   
   .poem-stanza {
-    margin: 12px 0;
-    padding: 18px;
+    margin: 1px 0;
+    padding: 1px;
   }
   
   .poem-stanza p {
-    margin: 6px 0;
+    margin: 1px 0;
     font-size: 1.1rem;
   }
   
@@ -373,15 +329,11 @@
     transform: scale(0.98);
     transition: transform 0.1s ease;
   }
-  
-  .birthday-card-book.open .card-front:active {
-    transform: rotateY(-15deg) scale(0.98);
-  }
 }
 
 /* ✅ Standard Responsive Design */
 @media (max-width: 1200px) {
-  .birthday-card-book.open {
+  .card-opened-container {
     min-width: 1000px;
     max-width: 1200px;
   }
@@ -396,9 +348,8 @@
 }
 
 @media (max-width: 1024px) {
-  .birthday-card-book.open {
+  .card-opened-container {
     flex-direction: column;
-    height: auto !important;
     min-width: auto;
     max-width: 90vw;
   }
