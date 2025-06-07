@@ -1,0 +1,47 @@
+.cake-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+.birthday-cake {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Flammen-Animation */
+.flame-animation {
+  animation: flicker 0.5s ease-in-out infinite alternate;
+  transform-origin: center bottom;
+}
+
+@keyframes flicker {
+  0% {
+    transform: scale(1) rotate(-1deg);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(1.05) rotate(1deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(0.95) rotate(-0.5deg);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(1.02) rotate(0.5deg);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(1) rotate(1deg);
+    opacity: 1;
+  }
+}
+
+/* Responsive SVG */
+@media (max-width: 480px) {
+  .birthday-cake {
+    width: 250px;
+    height: 200px;
+  }
+}

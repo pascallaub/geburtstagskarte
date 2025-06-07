@@ -1,0 +1,376 @@
+.birthday-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+}
+
+/* ✅ Aufklappende Karte - Buch-Style */
+.birthday-card-book {
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+  max-width: 95vw; /* ✅ Mehr Breite nutzen */
+  max-height: 90vh;
+}
+
+.birthday-card-book.open {
+  /* ✅ Geöffnet - beide Seiten nebeneinander mit mehr Platz */
+  width: auto !important;
+  display: flex;
+  min-width: 1200px; /* ✅ Mindestbreite für bessere Darstellung */
+  max-width: 1400px; /* ✅ Maximale Breite begrenzen */
+}
+
+/* ✅ Kartenseiten */
+.card-page {
+  position: relative;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  box-sizing: border-box;
+  transition: all 0.8s ease-in-out;
+}
+
+/* ✅ Vorderseite */
+.card-front {
+  width: 100%;
+  height: 100%;
+  color: #333;
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+  transform-origin: right center;
+}
+
+.birthday-card-book.open .card-front {
+  transform: rotateY(-15deg);
+  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
+  min-width: 600px; /* ✅ Vorderseite bekommt feste Breite */
+}
+
+/* ✅ Innenseite */
+.card-inside {
+  width: 0;
+  height: 100%;
+  opacity: 0;
+  overflow: hidden;
+  background: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  position: relative;
+}
+
+.birthday-card-book.open .card-inside {
+  width: 100%;
+  opacity: 1;
+  animation: slideIn 0.8s ease-out;
+  min-width: 800px; /* ✅ Innenseite bekommt mehr Platz */
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+/* ✅ Linke und rechte Innenseite - optimierte Aufteilung */
+.card-left-inside,
+.card-right-inside {
+  padding: 40px; /* ✅ Mehr Padding für bessere Lesbarkeit */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* ✅ Oben ausrichten statt zentrieren */
+  position: relative;
+  z-index: 2;
+  overflow-y: auto; /* ✅ Scrollen ermöglichen wenn nötig */
+}
+
+.card-left-inside {
+  flex: 1.2; /* ✅ Linke Seite etwas breiter für das Gedicht */
+  background: rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: left;
+  min-width: 350px; /* ✅ Mindestbreite für gute Lesbarkeit */
+}
+
+.card-right-inside {
+  flex: 1; /* ✅ Rechte Seite für interaktive Elemente */
+  text-align: center;
+  min-width: 300px; /* ✅ Mindestbreite für Torte und Ballons */
+}
+
+/* ✅ Optimierte Grußtext Styling */
+.greeting-title {
+  color: #e91e63;
+  font-size: 1.8rem; /* ✅ Größere Schrift */
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.greeting-text {
+  color: #555;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.greeting-text p {
+  margin: 10px 0;
+}
+
+.greeting-text em {
+  color: #e91e63;
+  font-style: italic;
+}
+
+/* ✅ Overlay für Vorderseite */
+.card-overlay {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+  padding: 30px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  position: relative;
+}
+
+.card-overlay h2 {
+  margin: 0 0 20px 0;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-preview {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* ✅ Konfetti Hintergrund */
+.confetti-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  animation: fall 4s linear infinite;
+}
+
+.confetti-1 { background: #ff6b6b; left: 10%; animation-delay: 0s; transform: rotate(45deg); }
+.confetti-2 { background: #4ecdc4; left: 20%; animation-delay: 0.5s; border-radius: 50%; }
+.confetti-3 { background: #45b7d1; left: 30%; animation-delay: 1s; transform: rotate(30deg); }
+.confetti-4 { background: #96ceb4; left: 40%; animation-delay: 1.5s; border-radius: 50%; }
+.confetti-5 { background: #feca57; left: 50%; animation-delay: 2s; transform: rotate(60deg); }
+.confetti-6 { background: #ff9ff3; left: 60%; animation-delay: 2.5s; border-radius: 50%; }
+.confetti-7 { background: #54a0ff; left: 70%; animation-delay: 3s; transform: rotate(90deg); }
+.confetti-8 { background: #5f27cd; left: 80%; animation-delay: 3.5s; border-radius: 50%; }
+.confetti-9 { background: #00d2d3; left: 90%; animation-delay: 0.2s; transform: rotate(15deg); }
+
+@keyframes fall {
+  0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* ✅ Content Styling rechte Seite */
+.birthday-title {
+  margin: 0 0 10px 0;
+  font-size: 2rem; /* ✅ Größerer Titel */
+  font-weight: bold;
+  color: #e91e63;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.birthday-message {
+  margin: 10px 0;
+  font-size: 1.1rem; /* ✅ Größere Schrift */
+  color: #555;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.wish-granted {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(255, 215, 0, 0.4); /* ✅ Intensiverer Hintergrund */
+  border-radius: 18px;
+  animation: sparkle 2s infinite;
+  border: 2px solid rgba(255, 215, 0, 0.6); /* ✅ Goldener Rahmen */
+}
+
+.wish-granted h3 {
+  margin: 0;
+  color: #ff6b35;
+  font-size: 1.4rem; /* ✅ Größerer Text */
+}
+
+/* ✅ Gedicht Styling - verbessert */
+.greeting-poem {
+  color: #555;
+  line-height: 1; /* ✅ Besserer Zeilenabstand */
+  font-size: 1.1rem; /* ✅ Etwas größere Schrift */
+  text-align: left;
+}
+
+.poem-stanza {
+  margin: 10px 0; /* ✅ Mehr Abstand zwischen Strophen */
+  padding: 20px; /* ✅ Mehr Padding */
+  background: rgba(255, 255, 255, 0.2); /* ✅ Sichtbarerer Hintergrund */
+  border-radius: 15px; /* ✅ Größere Rundung */
+  border-left: 5px solid rgba(233, 30, 99, 0.4); /* ✅ Dickerer Akzent */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* ✅ Schatten hinzugefügt */
+}
+
+.poem-stanza p {
+  margin: 10px 0; /* ✅ Mehr Abstand zwischen Zeilen */
+  font-style: italic;
+  color: #444;
+  font-size: 1.15rem; /* ✅ Größere Schrift */
+  font-weight: 500; /* ✅ Etwas fetter für bessere Lesbarkeit */
+}
+
+.birthday-wishes {
+  margin-top: 30px; /* ✅ Mehr Abstand */
+  padding: 25px; /* ✅ Mehr Padding */
+  background: linear-gradient(45deg, rgba(255, 182, 193, 0.4), rgba(255, 240, 245, 0.5));
+  border-radius: 18px; /* ✅ Größere Rundung */
+  text-align: center;
+  border: 3px solid rgba(233, 30, 99, 0.3); /* ✅ Dickerer Rahmen */
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.2); /* ✅ Farbiger Schatten */
+}
+
+.birthday-wishes strong {
+  color: #e91e63;
+  font-size: 1.3rem; /* ✅ Größere Schrift */
+  display: block;
+  margin-bottom: 15px; /* ✅ Mehr Abstand */
+}
+
+.birthday-wishes p:last-child {
+  font-size: 1rem; /* ✅ Angepasste Schriftgröße */
+  line-height: 1.6; /* ✅ Besserer Zeilenabstand */
+}
+
+/* ✅ Responsive Design - angepasst */
+@media (max-width: 1200px) {
+  .birthday-card-book.open {
+    min-width: 1000px;
+    max-width: 1200px;
+  }
+  
+  .card-left-inside {
+    min-width: 300px;
+  }
+  
+  .card-right-inside {
+    min-width: 250px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .birthday-card-book.open {
+    flex-direction: column;
+    height: auto !important;
+    min-width: auto;
+    max-width: 90vw;
+  }
+  
+  .card-left-inside,
+  .card-right-inside {
+    flex: none;
+    min-height: 400px;
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .greeting-title {
+    font-size: 1.6rem;
+  }
+  
+  .birthday-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-left-inside,
+  .card-right-inside {
+    padding: 25px;
+    min-height: 350px;
+  }
+  
+  .greeting-poem {
+    font-size: 1rem;
+  }
+  
+  .poem-stanza p {
+    font-size: 1.05rem;
+  }
+  
+  .greeting-title {
+    font-size: 1.5rem;
+  }
+  
+  .birthday-title {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-overlay {
+    padding: 20px;
+  }
+  
+  .card-overlay h2 {
+    font-size: 1.4rem;
+  }
+  
+  .card-left-inside,
+  .card-right-inside {
+    padding: 20px;
+  }
+  
+  .greeting-poem {
+    font-size: 0.95rem;
+  }
+  
+  .poem-stanza {
+    padding: 15px;
+  }
+  
+  .poem-stanza p {
+    font-size: 1rem;
+  }
+  
+  .birthday-wishes {
+    padding: 20px;
+  }
+}
