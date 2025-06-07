@@ -133,8 +133,8 @@ const BirthdayCard = () => {
             className="card-page card-front"
             onClick={handleCardClick}
             style={{
-              width: imageLoaded ? `${imageDimensions.width}px` : "600px",
-              height: imageLoaded ? `${imageDimensions.height}px` : "450px",
+              width: imageLoaded ? `${Math.min(imageDimensions.width, 600)}px` : "600px", 
+              height: imageLoaded ? `${Math.min(imageDimensions.height, 800)}px` : "800px", 
               backgroundImage: "url(/karte.jpg)",
               backgroundSize: "cover",
               backgroundPosition: "center",
