@@ -141,15 +141,6 @@ const BirthdayCard = () => {
               backgroundRepeat: "no-repeat",
             }}
           >
-            <div className="card-overlay">
-              <h2>🎉 Klicken zum Öffnen 🎉</h2>
-              <div className="card-preview">
-                <span>Happy Birthday!</span>
-                <div style={{ marginTop: "10px", fontSize: "1.5rem" }}>
-                  🎈🎂🎈
-                </div>
-              </div>
-            </div>
           </div>
         )}
 
