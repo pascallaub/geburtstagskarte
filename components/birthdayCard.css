@@ -15,16 +15,15 @@
   perspective: 1000px;
   border-radius: 20px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-  max-width: 95vw; /* ✅ Mehr Breite nutzen */
+  max-width: 95vw;
   max-height: 90vh;
 }
 
 .birthday-card-book.open {
-  /* ✅ Geöffnet - beide Seiten nebeneinander mit mehr Platz */
   width: auto !important;
   display: flex;
-  min-width: 1200px; /* ✅ Mindestbreite für bessere Darstellung */
-  max-width: 1400px; /* ✅ Maximale Breite begrenzen */
+  min-width: 1200px;
+  max-width: 1400px;
 }
 
 /* ✅ Kartenseiten */
@@ -54,7 +53,7 @@
 .birthday-card-book.open .card-front {
   transform: rotateY(-15deg);
   box-shadow: -5px 0 20px rgba(0, 0, 0, 0.2);
-  min-width: 600px; /* ✅ Vorderseite bekommt feste Breite */
+  min-width: 600px;
 }
 
 /* ✅ Innenseite */
@@ -74,7 +73,7 @@
   width: 100%;
   opacity: 1;
   animation: slideIn 0.8s ease-out;
-  min-width: 800px; /* ✅ Innenseite bekommt mehr Platz */
+  min-width: 800px;
 }
 
 @keyframes slideIn {
@@ -88,36 +87,36 @@
   }
 }
 
-/* ✅ Linke und rechte Innenseite - optimierte Aufteilung */
+/* ✅ Linke und rechte Innenseite */
 .card-left-inside,
 .card-right-inside {
-  padding: 40px; /* ✅ Mehr Padding für bessere Lesbarkeit */
+  padding: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* ✅ Oben ausrichten statt zentrieren */
+  justify-content: flex-start;
   position: relative;
   z-index: 2;
-  overflow-y: auto; /* ✅ Scrollen ermöglichen wenn nötig */
+  overflow-y: auto;
 }
 
 .card-left-inside {
-  flex: 1.2; /* ✅ Linke Seite etwas breiter für das Gedicht */
+  flex: 1.2;
   background: rgba(255, 255, 255, 0.1);
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   text-align: left;
-  min-width: 350px; /* ✅ Mindestbreite für gute Lesbarkeit */
+  min-width: 350px;
 }
 
 .card-right-inside {
-  flex: 1; /* ✅ Rechte Seite für interaktive Elemente */
+  flex: 1;
   text-align: center;
-  min-width: 300px; /* ✅ Mindestbreite für Torte und Ballons */
+  min-width: 300px;
 }
 
-/* ✅ Optimierte Grußtext Styling */
+/* ✅ Grußtext Styling */
 .greeting-title {
   color: #e91e63;
-  font-size: 1.8rem; /* ✅ Größere Schrift */
+  font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 30px;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -203,7 +202,7 @@
 /* ✅ Content Styling rechte Seite */
 .birthday-title {
   margin: 0 0 10px 0;
-  font-size: 2rem; /* ✅ Größerer Titel */
+  font-size: 2rem;
   font-weight: bold;
   color: #e91e63;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -211,7 +210,7 @@
 
 .birthday-message {
   margin: 10px 0;
-  font-size: 1.1rem; /* ✅ Größere Schrift */
+  font-size: 1.1rem;
   color: #555;
   line-height: 1.5;
   font-weight: 500;
@@ -220,66 +219,167 @@
 .wish-granted {
   margin-top: 20px;
   padding: 20px;
-  background: rgba(255, 215, 0, 0.4); /* ✅ Intensiverer Hintergrund */
+  background: rgba(255, 215, 0, 0.4);
   border-radius: 18px;
   animation: sparkle 2s infinite;
-  border: 2px solid rgba(255, 215, 0, 0.6); /* ✅ Goldener Rahmen */
+  border: 2px solid rgba(255, 215, 0, 0.6);
 }
 
 .wish-granted h3 {
   margin: 0;
   color: #ff6b35;
-  font-size: 1.4rem; /* ✅ Größerer Text */
+  font-size: 1.4rem;
 }
 
-/* ✅ Gedicht Styling - verbessert */
+/* ✅ Gedicht Styling */
 .greeting-poem {
   color: #555;
-  line-height: 1; /* ✅ Besserer Zeilenabstand */
-  font-size: 1.1rem; /* ✅ Etwas größere Schrift */
+  line-height: 1.4;
+  font-size: 1.1rem;
   text-align: left;
 }
 
 .poem-stanza {
-  margin: 10px 0; /* ✅ Mehr Abstand zwischen Strophen */
-  padding: 20px; /* ✅ Mehr Padding */
-  background: rgba(255, 255, 255, 0.2); /* ✅ Sichtbarerer Hintergrund */
-  border-radius: 15px; /* ✅ Größere Rundung */
-  border-left: 5px solid rgba(233, 30, 99, 0.4); /* ✅ Dickerer Akzent */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* ✅ Schatten hinzugefügt */
+  margin: 15px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  border-left: 5px solid rgba(233, 30, 99, 0.4);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .poem-stanza p {
-  margin: 10px 0; /* ✅ Mehr Abstand zwischen Zeilen */
+  margin: 8px 0;
   font-style: italic;
   color: #444;
-  font-size: 1.15rem; /* ✅ Größere Schrift */
-  font-weight: 500; /* ✅ Etwas fetter für bessere Lesbarkeit */
+  font-size: 1.15rem;
+  font-weight: 500;
 }
 
 .birthday-wishes {
-  margin-top: 30px; /* ✅ Mehr Abstand */
-  padding: 25px; /* ✅ Mehr Padding */
+  margin-top: 25px;
+  padding: 25px;
   background: linear-gradient(45deg, rgba(255, 182, 193, 0.4), rgba(255, 240, 245, 0.5));
-  border-radius: 18px; /* ✅ Größere Rundung */
+  border-radius: 18px;
   text-align: center;
-  border: 3px solid rgba(233, 30, 99, 0.3); /* ✅ Dickerer Rahmen */
-  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.2); /* ✅ Farbiger Schatten */
+  border: 3px solid rgba(233, 30, 99, 0.3);
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.2);
 }
 
 .birthday-wishes strong {
   color: #e91e63;
-  font-size: 1.3rem; /* ✅ Größere Schrift */
+  font-size: 1.3rem;
   display: block;
-  margin-bottom: 15px; /* ✅ Mehr Abstand */
+  margin-bottom: 15px;
 }
 
 .birthday-wishes p:last-child {
-  font-size: 1rem; /* ✅ Angepasste Schriftgröße */
-  line-height: 1.6; /* ✅ Besserer Zeilenabstand */
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
-/* ✅ Responsive Design - angepasst */
+/* ✅ iPad Air 11" Queransicht - Spezielle Optimierung */
+@media screen and (min-width: 1194px) and (max-width: 1366px) and (min-height: 750px) and (max-height: 900px) and (orientation: landscape) {
+  .birthday-card-book {
+    max-width: 98vw;
+    max-height: 85vh;
+  }
+  
+  .birthday-card-book.open {
+    min-width: 1100px;
+    max-width: 1300px;
+    height: auto;
+  }
+  
+  .card-left-inside,
+  .card-right-inside {
+    padding: 35px;
+  }
+  
+  .card-left-inside {
+    min-width: 420px;
+    max-width: 500px;
+  }
+  
+  .card-right-inside {
+    min-width: 380px;
+    max-width: 450px;
+  }
+  
+  .greeting-title {
+    font-size: 1.7rem;
+    margin-bottom: 25px;
+  }
+  
+  .greeting-poem {
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+  
+  .poem-stanza {
+    margin: 12px 0;
+    padding: 18px;
+  }
+  
+  .poem-stanza p {
+    margin: 6px 0;
+    font-size: 1.1rem;
+  }
+  
+  .birthday-wishes {
+    margin-top: 20px;
+    padding: 20px;
+  }
+  
+  .birthday-wishes strong {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+  }
+  
+  .birthday-title {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .birthday-message {
+    font-size: 1.05rem;
+    margin: 15px 0;
+  }
+  
+  /* Torte und Ballons anpassen */
+  .birthday-cake {
+    width: 280px;
+    height: 230px;
+  }
+  
+  .wish-granted {
+    margin-top: 15px;
+    padding: 18px;
+  }
+  
+  .wish-granted h3 {
+    font-size: 1.3rem;
+  }
+}
+
+/* ✅ iPad-spezifische Touch-Optimierungen */
+@media (pointer: coarse) and (min-width: 1000px) {
+  .card-front {
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+  
+  .card-front:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  .birthday-card-book.open .card-front:active {
+    transform: rotateY(-15deg) scale(0.98);
+  }
+}
+
+/* ✅ Standard Responsive Design */
 @media (max-width: 1200px) {
   .birthday-card-book.open {
     min-width: 1000px;
